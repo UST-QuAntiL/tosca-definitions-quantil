@@ -5,6 +5,6 @@
 },
 {
   "name" : "Common Types",
-  "url" : "https://github.com/OpenTOSCA/TOSCA-definitions-common",
+  "url" : "https://github.com/OpenTOSCA/tosca-definitions-common",
   "branch" : "master"
 } ]
