@@ -2,7 +2,6 @@
 
 > This node type installs Qiskit.
 
-
 ## Haftungsausschluss
 
 Dies ist ein Forschungsprototyp und enthält insbesondere Beiträge von Studenten.

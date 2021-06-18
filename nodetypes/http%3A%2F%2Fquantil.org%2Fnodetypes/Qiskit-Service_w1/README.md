@@ -2,6 +2,10 @@
 
 > Installs and starts Qiskit-Services.
 
+## Properties
+
+- `Port`
+- `Name`
 
 ## Haftungsausschluss
 
