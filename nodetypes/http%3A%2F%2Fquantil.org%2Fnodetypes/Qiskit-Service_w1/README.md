@@ -1,4 +1,4 @@
-# Qiskit Services
+# Qiskit-Service
 
 > Installs and starts Qiskit-Services.
 
