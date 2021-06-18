@@ -107,6 +107,15 @@
     "generatedNamespace" : false,
     "patternCollection" : false
   },
+  "http://qunatil.org/nodetypeimplementations" : {
+    "namespace" : "http://qunatil.org/nodetypeimplementations",
+    "prefix" : "nodetypeimplementationsQuantil",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
+  },
     "http://qunatil.org/artifacttemplates" : {
     "namespace" : "http://qunatil.org/artifacttemplates",
     "prefix" : "artifacttemplatesQuantil",
