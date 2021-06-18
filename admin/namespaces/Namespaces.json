@@ -100,7 +100,16 @@
   },
     "http://qunatil.org/nodetypes" : {
     "namespace" : "http://quantil.org/nodetypes",
-    "prefix" : "nodetypes-quantil",
+    "prefix" : "nodetypesQuantil",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
+  },
+    "http://qunatil.org/artifacttemplates" : {
+    "namespace" : "http://qunatil.org/artifacttemplates",
+    "prefix" : "artifacttemplatesQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
     "secureCollection" : false,
