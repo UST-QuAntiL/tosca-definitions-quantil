@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Definitions xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:selfservice="http://www.eclipse.org/winery/model/selfservice" xmlns:testwineryopentoscaorg="http://test.winery.opentosca.org" targetNamespace="http://quantil.org/nodetypes" id="nodetypesQuantil-PennyLane-App_w1">
     <NodeType name="PennyLane-App_w1" targetNamespace="http://quantil.org/nodetypes">
-        <winery:PropertiesDefinition elementname="properties" namespace="http://opentosca.org/nodetypes/propertiesdefinition/winery">
-            <winery:properties>
-                <winery:constraints/>
-                <winery:defaultValue>8080</winery:defaultValue>
-                <winery:description></winery:description>
-                <winery:key>Port</winery:key>
-                <winery:required>true</winery:required>
-                <winery:type>xsd:string</winery:type>
-            </winery:properties>
-        </winery:PropertiesDefinition>
+        <DerivedFrom xmlns:nodetypes="http://opentosca.org/nodetypes" typeRef="nodetypes:QC-App_w1"/>
         <Interfaces>
             <Interface name="http://opentosca.org/interfaces/lifecycle">
                 <Operation name="install"/>
