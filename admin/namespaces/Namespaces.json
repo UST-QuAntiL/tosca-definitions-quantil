@@ -1,7 +1,7 @@
 {
     "http://qunatil.org/nodetypes" : {
     "namespace" : "http://quantil.org/nodetypes",
-    "prefix" : "nodetypesQuantil",
+    "prefix" : "nodeTypesQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
     "secureCollection" : false,
@@ -10,7 +10,7 @@
   },
   "http://qunatil.org/nodetypeimplementations" : {
     "namespace" : "http://qunatil.org/nodetypeimplementations",
-    "prefix" : "nodetypeimplementationsQuantil",
+    "prefix" : "nodeTypeImplementationsQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
     "secureCollection" : false,
@@ -19,7 +19,7 @@
   },
     "http://qunatil.org/artifacttemplates" : {
     "namespace" : "http://qunatil.org/artifacttemplates",
-    "prefix" : "artifacttemplatesQuantil",
+    "prefix" : "artifactTemplatesQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
     "secureCollection" : false,
