@@ -1,6 +1,9 @@
-# Qiskit [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+# PennyLane [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
-> This node type installs Qiskit.
+> This node type installs PennyLane.
+
+> **⚠ Executions may not be reproducible!** This Node Type installs PennyLane in its latest version.
+> Thus, applications that depend on this Node Type may not be compatible with the installed version.
 
 ## Haftungsausschluss
 
