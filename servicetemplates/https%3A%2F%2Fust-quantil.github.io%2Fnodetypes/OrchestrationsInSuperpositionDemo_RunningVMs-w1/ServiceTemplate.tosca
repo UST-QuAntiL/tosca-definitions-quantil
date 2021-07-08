@@ -98,7 +98,7 @@
             </NodeTemplate>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_2" winery:x="729" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
             <NodeTemplate name="Java8" minInstances="1" maxInstances="1" type="nodetypes:Java8" id="Java8_0" winery:x="290" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
-            <NodeTemplate name="Camunda_w1" minInstances="1" maxInstances="1" type="nodetypes:Camunda_w1" id="Camunda_w1_0" winery:x="291" winery:y="168" xmlns:nodetypes="http://opentosca.org/nodetypes">
+            <NodeTemplate name="Camunda_w1" minInstances="1" maxInstances="1" type="nodetypes:Camunda_7.14.0-w1" id="Camunda_w1_0" winery:x="291" winery:y="168" xmlns:nodetypes="http://opentosca.org/nodetypes">
                 <Properties>
                     <ex:Properties xmlns:ex="http://www.example.org">
                         <ex:Port>443</ex:Port>
@@ -110,7 +110,7 @@
                     <DeploymentArtifact name="Quantum-Workflow-Demonstrator_DA-w1" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="artifactTemplatesQuantil:Quantum-Workflow-Demonstrator_DA-w1" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate name="PythonApp_3" minInstances="1" maxInstances="1" type="nodetypes:PythonApp_3" id="PythonApp_3_0" winery:x="730" winery:y="107" xmlns:nodetypes="http://opentosca.org/nodetypes">
+            <NodeTemplate name="PythonApp_3" minInstances="1" maxInstances="1" type="nodetypes:PythonApp_3-w1" id="PythonApp_3_0" winery:x="730" winery:y="107" xmlns:nodetypes="http://opentosca.org/nodetypes">
                 <Properties>
                     <ex:Properties xmlns:ex="http://www.example.org">
                         <ex:Port>8081</ex:Port>
