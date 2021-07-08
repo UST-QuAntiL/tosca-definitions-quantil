@@ -71,9 +71,9 @@
                 </Properties>
             </NodeTemplate>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_0" winery:x="1789" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
-            <NodeTemplate name="Qiskit_w1" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_0" winery:x="1529" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
+            <NodeTemplate name="Qiskit_" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_0" winery:x="1529" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_1" winery:x="1245" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
-            <NodeTemplate name="Qiskit" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_w1" id="Qiskit_latest-w1" winery:x="1063" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
+            <NodeTemplate name="Qiskit" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_1" winery:x="1063" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
             <NodeTemplate name="Clustering Service" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit-Service_w1" id="Qiskit-Service_w1_0" winery:x="1060" winery:y="55" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes">
                 <Properties>
                     <ex:Properties xmlns:ex="http://www.example.org">
@@ -97,7 +97,7 @@
                 </DeploymentArtifacts>
             </NodeTemplate>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_2" winery:x="729" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
-            <NodeTemplate name="Java8" minInstances="1" maxInstances="1" type="nodetypes:Java8" id="Java8_0" winery:x="290" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
+            <NodeTemplate name="Java8" minInstances="1" maxInstances="1" type="nodetypes:Java_8-w1" id="Java8_0" winery:x="290" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
             <NodeTemplate name="Camunda_w1" minInstances="1" maxInstances="1" type="nodetypes:Camunda_7.14.0-w1" id="Camunda_w1_0" winery:x="291" winery:y="168" xmlns:nodetypes="http://opentosca.org/nodetypes">
                 <Properties>
                     <ex:Properties xmlns:ex="http://www.example.org">
