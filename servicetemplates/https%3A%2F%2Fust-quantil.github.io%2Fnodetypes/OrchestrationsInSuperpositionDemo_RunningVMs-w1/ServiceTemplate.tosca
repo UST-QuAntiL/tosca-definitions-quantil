@@ -71,7 +71,7 @@
                 </Properties>
             </NodeTemplate>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_0" winery:x="1789" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
-            <NodeTemplate name="Qiskit_" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_0" winery:x="1529" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
+            <NodeTemplate name="Qiskit" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_0" winery:x="1529" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
             <NodeTemplate name="Python_3" minInstances="1" maxInstances="1" type="nodetypes:Python_3-w1" id="Python_3_1" winery:x="1245" winery:y="275" xmlns:nodetypes="http://opentosca.org/nodetypes"/>
             <NodeTemplate name="Qiskit" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit_latest-w1" id="Qiskit_w1_1" winery:x="1063" winery:y="168" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes"/>
             <NodeTemplate name="Clustering Service" minInstances="1" maxInstances="1" type="nodetypesQuantil:Qiskit-Service_w1" id="Qiskit-Service_w1_0" winery:x="1060" winery:y="55" xmlns:nodetypesQuantil="https://ust-quantil.github.io/nodetypes">
