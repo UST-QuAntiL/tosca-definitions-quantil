@@ -25,5 +25,14 @@
     "secureCollection" : false,
     "generatedNamespace" : false,
     "patternCollection" : false
+  },
+  "https://ust-quantil.github.io/servicetemplates" : {
+    "namespace" : "https://ust-quantil.github.io/servicetemplates",
+    "prefix" : "servicetemplatesQuantil",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
   }
 }
