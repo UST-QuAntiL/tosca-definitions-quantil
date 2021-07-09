@@ -129,19 +129,19 @@
             </NodeTemplate>
             <RelationshipTemplate name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
                 <SourceElement ref="Ubuntu-VM_20.04-w1_0"/>
-                <TargetElement ref="OpenStack_Train-w1_0"/>
+                <TargetElement ref="OpenStack_15-Train-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
                 <SourceElement ref="Ubuntu-VM_20.04-w1_1"/>
-                <TargetElement ref="OpenStack_Train-w1_0"/>
+                <TargetElement ref="OpenStack_15-Train-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_2" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
                 <SourceElement ref="Ubuntu-VM_20.04-w1_2"/>
-                <TargetElement ref="OpenStack_Train-w1_0"/>
+                <TargetElement ref="OpenStack_15-Train-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_3" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
                 <SourceElement ref="Ubuntu-VM_20.04-w1_3"/>
-                <TargetElement ref="OpenStack_Train-w1_0"/>
+                <TargetElement ref="OpenStack_15-Train-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_4" xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes">
                 <SourceElement ref="Python_3_0"/>
