@@ -10,7 +10,7 @@
             </Properties>
         </BoundaryDefinitions>
         <TopologyTemplate>
-            <NodeTemplate name="OpenStack" minInstances="1" maxInstances="1" type="nodetypes:OpenStack_Train-w1" id="OpenStack_Train-w1_0" winery:x="896" winery:y="582" xmlns:nodetypes="http://opentosca.org/nodetypes">
+            <NodeTemplate name="OpenStack" minInstances="1" maxInstances="1" type="nodetypes:OpenStack_15-Train-w1" id="OpenStack_15-Train-w1_0" winery:x="896" winery:y="582" xmlns:nodetypes="http://opentosca.org/nodetypes">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <HypervisorEndpoint>get_input: OpenStackEndpoint</HypervisorEndpoint>
