@@ -1,4 +1,4 @@
-# QHAna Plugin Runner Install IA [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# QHAna Plugin Runner Start IA [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Haftungsausschluss
 
