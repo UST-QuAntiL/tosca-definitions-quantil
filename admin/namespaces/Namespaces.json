@@ -4,8 +4,8 @@
     "prefix" : "nodeTypeImplementationsQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
-    "generatedNamespace" : false,
     "secureCollection" : false,
+    "generatedNamespace" : false,
     "patternCollection" : false
   },
   "https://ust-quantil.github.io/nodetypes" : {
@@ -13,8 +13,8 @@
     "prefix" : "nodeTypesQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
-    "generatedNamespace" : false,
     "secureCollection" : false,
+    "generatedNamespace" : false,
     "patternCollection" : false
   },
   "https://ust-quantil.github.io/artifacttemplates" : {
@@ -22,8 +22,8 @@
     "prefix" : "artifactTemplatesQuantil",
     "readableName" : "",
     "upstreamRepository" : "",
-    "generatedNamespace" : false,
     "secureCollection" : false,
+    "generatedNamespace" : false,
     "patternCollection" : false
   }
 }
