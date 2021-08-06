@@ -1,13 +1,4 @@
 {
-    "https://ust-quantil.github.io/nodetypes" : {
-    "namespace" : "https://ust-quantil.github.io/nodetypes",
-    "prefix" : "nodeTypesQuantil",
-    "readableName" : "",
-    "upstreamRepository" : "",
-    "secureCollection" : false,
-    "generatedNamespace" : false,
-    "patternCollection" : false
-  },
   "https://ust-quantil.github.io/nodetypeimplementations" : {
     "namespace" : "https://ust-quantil.github.io/nodetypeimplementations",
     "prefix" : "nodeTypeImplementationsQuantil",
@@ -17,7 +8,16 @@
     "generatedNamespace" : false,
     "patternCollection" : false
   },
-    "https://ust-quantil.github.io/artifacttemplates" : {
+  "https://ust-quantil.github.io/nodetypes" : {
+    "namespace" : "https://ust-quantil.github.io/nodetypes",
+    "prefix" : "nodeTypesQuantil",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
+  },
+  "https://ust-quantil.github.io/artifacttemplates" : {
     "namespace" : "https://ust-quantil.github.io/artifacttemplates",
     "prefix" : "artifactTemplatesQuantil",
     "readableName" : "",
