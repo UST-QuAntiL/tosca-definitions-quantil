@@ -2,8 +2,8 @@
 
 cat << EOF > start_script.sh
 #!/bin/bash
-FLASK_APP=qhana_plugin_runner
-FLASK_ENV=production
+export FLASK_APP=qhana_plugin_runner
+export FLASK_ENV=production
 
 python3 -m flask create-db
 
