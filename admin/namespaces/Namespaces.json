@@ -23,6 +23,14 @@
     "patternCollection" : false,
     "secureCollection" : false
   },
+  "https://ust-quantil.github.io/quantum/applications/nodetypes" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypes",
+    "prefix" : "https://ust-quantilgithubio/quantum/applications/nodetypes",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
   "https://ust-quantil.github.io/artifacttemplates" : {
     "namespace" : "https://ust-quantil.github.io/artifacttemplates",
     "prefix" : "artifactTemplatesQuantil",
