@@ -1,12 +1,4 @@
 {
-  "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations" : {
-    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations",
-    "prefix" : "ntyiIgeneral",
-    "readableName" : "",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
-    "secureCollection" : false
-  },
   "https://ust-quantil.github.io/nodetypeimplementations" : {
     "namespace" : "https://ust-quantil.github.io/nodetypeimplementations",
     "prefix" : "nodeTypeImplementationsQuantil",
@@ -18,14 +10,6 @@
   "https://ust-quantil.github.io/nodetypes" : {
     "namespace" : "https://ust-quantil.github.io/nodetypes",
     "prefix" : "nodeTypesQuantil",
-    "readableName" : "",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
-    "secureCollection" : false
-  },
-  "https://ust-quantil.github.io/quantum/applications/nodetypes" : {
-    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypes",
-    "prefix" : "https://ust-quantilgithubio/quantum/applications/nodetypes",
     "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
