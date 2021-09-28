@@ -13,4 +13,5 @@ echo "started gunicorn demon on $Port with application $AppModule"
 python3 -m celery --app qhana_plugin_runner.celery_worker:CELERY worker --loglevel INFO --autoscale $MinWorkers,$MaxWorkers --detach
 echo "started celery with $MinWorkers, $MaxWorkers"
 echo "started QHAna application!"
+sleep 5
 EOF
