@@ -17,7 +17,6 @@
         <Interfaces>
             <Interface name="http://opentosca.org/interfaces/lifecycle">
                 <Operation name="install"/>
-                <Operation name="configure"/>
                 <Operation name="start">
                     <InputParameters>
                         <InputParameter name="MinWorkers" type="xsd:integer" required="no"/>
@@ -26,8 +25,6 @@
                         <InputParameter name="AppModule" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
-                <Operation name="stop"/>
-                <Operation name="uninstall"/>
             </Interface>
         </Interfaces>
     </NodeType>
