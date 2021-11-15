@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import uuid
 from typing import Optional
 from qiskit import Aer, IBMQ
-from qiskit.aqua import QuantumInstance
+from qiskit.utils import QuantumInstance
 from qiskit_app_algo import run_algo
 import os
 import sys
@@ -35,10 +35,10 @@ def main():
         except Exception as e: 
             print("Unexpected error invoking the Qiskit App Algo:", e)
             job.failed()
-			
+
     start_endpoint(qiskit_job)
-	
-	
+
+
 def get_shots_param(args):
     if 'shots' in args:
         return int(args["shots"])
@@ -74,7 +74,7 @@ def after_request(response):
     header = response.headers
     header['Access-Control-Allow-Origin'] = '*'
     return response
-	
+
 @app.route('/jobs', methods=['POST'])
 def create_job():
     try:
@@ -106,13 +106,13 @@ def get_result(id):
             return 'Job not finished', 418
     else:
         raise NotFound(detail = 'Job not found')
-		
+
 def start_endpoint(new_job_callback):
     global job_callback
     job_callback = new_job_callback
     app.run(host='0.0.0.0', port=int(sys.argv[1]), debug=True)
-	
-		
+
+
 # Create Qiskit-App Config
 
 def get_config(key, default=None) -> Optional[str]:
@@ -154,7 +154,6 @@ def get_backend():
         raise "Provider not found: " + provider_name
     return backend
 
-	
+
 if __name__ == '__main__':
     main()
-	
