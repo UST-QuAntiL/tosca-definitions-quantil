@@ -15,6 +15,14 @@
     "patternCollection" : false,
     "secureCollection" : false
   },
+  "https://ust-quantil.github.io/artifacttypes" : {
+    "namespace" : "https://ust-quantil.github.io/artifacttypes",
+    "prefix" : "artifactTypesQuantil",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
   "https://ust-quantil.github.io/artifacttemplates" : {
     "namespace" : "https://ust-quantil.github.io/artifacttemplates",
     "prefix" : "artifactTemplatesQuantil",

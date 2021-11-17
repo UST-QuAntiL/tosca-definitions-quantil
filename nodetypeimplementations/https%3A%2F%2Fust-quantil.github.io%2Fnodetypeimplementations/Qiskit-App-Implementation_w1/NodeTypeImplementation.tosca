@@ -6,7 +6,7 @@
             <ImplementationArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="Qiskit_App_Start" interfaceName="http://opentosca.org/interfaces/lifecycle" operationName="start" artifactType="ToscaBaseTypes:ScriptArtifact" artifactRef="artifactTemplatesQuantil:Qiskit-App_Start-w1"/>
         </ImplementationArtifacts>
         <DeploymentArtifacts>
-            <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="Qiskit_App_Adapter_DA" artifactType="ToscaBaseTypes:ScriptArtifact" artifactRef="artifactTemplatesQuantil:Qiskit-App-Adapter_DA-w1"/>
+            <DeploymentArtifact xmlns:artifactTypesQuantil="https://ust-quantil.github.io/artifacttypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="Qiskit_App_Adapter_DA" artifactType="artifactTypesQuantil:QiskitApp" artifactRef="artifactTemplatesQuantil:Qiskit-App-Adapter_DA-w1"/>
         </DeploymentArtifacts>
     </NodeTypeImplementation>
 </Definitions>
