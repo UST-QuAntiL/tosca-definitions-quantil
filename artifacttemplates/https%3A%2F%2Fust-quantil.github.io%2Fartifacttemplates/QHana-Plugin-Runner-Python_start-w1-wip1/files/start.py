@@ -14,19 +14,20 @@ def write_start_script(environ):
     max_workers = environ.get("MaxWorkers", "2")
 
     script_content = f'''#!/bin/bash
-    export FLASK_APP=qhana_plugin_runner
-    export FLASK_ENV=production
-    export PLUGIN_FOLDERS=plugins
+export FLASK_APP=qhana_plugin_runner
+export FLASK_ENV=production
+export PLUGIN_FOLDERS=plugins
+export URL_MAP='{{"(?P<scheme>https?://)(localhost|host.docker.internal):(?P<port>[0-9]+)": "\\\\g<scheme>host.docker.internal:\\\\g<port>"}}'
 
-    python3 -m flask create-db
+python3 -m flask create-db
 
-    python3 -m gunicorn --daemon --workers 4 --bind 0.0.0.0:{port} "{app_module}"
-    echo "started gunicorn demon on {port} with application {app_module}"
+python3 -m gunicorn --daemon --workers 4 --bind 0.0.0.0:{port} "{app_module}"
+echo "started gunicorn demon on {port} with application {app_module}"
 
-    python3 -m celery --app qhana_plugin_runner.celery_worker:CELERY worker --loglevel INFO --autoscale {min_workers},{max_workers} --detach
-    echo "started celery with {min_workers}, {max_workers}"
-    echo "started QHAna application!"
-    sleep 10
+python3 -m celery --app qhana_plugin_runner.celery_worker:CELERY worker --loglevel INFO --autoscale {min_workers},{max_workers} --detach
+echo "started celery with {min_workers}, {max_workers}"
+echo "started QHAna application!"
+sleep 10
     '''
 
     with Path('start_script.sh').open(mode='wt') as start_script:
