@@ -62,7 +62,7 @@ def install_plugin_runner(zip_da):
         return
     target = Path('src')
     extract_zip(zip_da, target) 
-    cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'invoke', str(target.resolve())]
+    cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'invoke', 'mysql-connector-python==8.0.25', str(target.resolve())]
     print(cmd_join(cmd))
     subprocess.run(cmd)
     for f in ['tasks.py', 'pyproject.toml', 'poetry.lock']:
