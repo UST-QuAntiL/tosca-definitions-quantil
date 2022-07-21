@@ -62,7 +62,8 @@ def install_plugin_runner(zip_da):
         return
     target = Path('src')
     extract_zip(zip_da, target) 
-    # TODO unpin versions if possible 'SQLAlchemy==1.4.31', 
+    # TODO unpin versions if possible 
+    # expected: 'SQLAlchemy==1.4.31'
     cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'invoke', 'mysql-connector-python==8.0.26', str(target.resolve())]
     print(cmd_join(cmd))
     subprocess.run(cmd)
@@ -89,11 +90,6 @@ def post_install(environ):
     cmd = ['python3', '-m', 'flask', 'install']
     print(cmd_join(cmd), 'env:', extra_env)
     subprocess.run(cmd, env=ChainMap(extra_env, environ))
-    # Fix ensure mysql-connector-python version
-    # TODO remove this command in new version
-    # cmd = ['python3', '-m', 'pip', 'install', 'mysql-connector-python==8.0.25']
-    #subprocess.run(cmd, env=ChainMap(extra_env, environ))
-    #print(cmd_join(cmd), 'env:', extra_env)
    
         
 
