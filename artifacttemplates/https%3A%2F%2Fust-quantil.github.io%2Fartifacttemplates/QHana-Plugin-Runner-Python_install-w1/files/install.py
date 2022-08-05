@@ -8,7 +8,7 @@ from typing import ChainMap
 from zipfile import ZipFile
 from shutil import copyfile
 from shlex import join as cmd_join
-from subprocess import DEVNULL
+from subprocess import DEVNULL, PIPE
 
 def argv_to_dict(argv):
     return dict(arg.split('=', maxsplit=1) for arg in argv if '=' in arg)
@@ -63,12 +63,20 @@ def install_plugin_runner(zip_da):
     target = Path('src')
     extract_zip(zip_da, target) 
     # TODO unpin versions if possible 
-    # expected: 'SQLAlchemy==1.4.31'
-    cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'invoke', 'mysql-connector-python==8.0.26', str(target.resolve())]
+    cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'mysql-connector-python==8.0.26']
     print(cmd_join(cmd))
     subprocess.run(cmd)
     for f in ['tasks.py', 'pyproject.toml', 'poetry.lock']:
         copyfile(target/f, Path('.')/f)
+    cmd = ['python3', '-m', 'poetry', 'export', '--without-hashes']
+    requirments = subprocess.run(cmd, stdout=PIPE)
+    req_file = Path('requirements.txt')
+    with req_file.open(mode='w') as f:
+        f.write(f'{target.resolve()}\n')
+        f.write(requirments.stdout.decode())
+    cmd = ['python3', '-m', 'pip', 'install', '-r', str(req_file.resolve())]
+    print(cmd_join(cmd))
+    subprocess.run(cmd)
 
 
 def install_plugin(zip_da):
