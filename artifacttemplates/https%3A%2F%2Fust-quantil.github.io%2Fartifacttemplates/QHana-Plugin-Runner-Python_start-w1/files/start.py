@@ -8,7 +8,7 @@ def argv_to_dict(argv):
     return dict(arg.split('=', maxsplit=1) for arg in argv if '=' in arg)
 
 def write_start_script(environ):
-    port = environ.get("Port", "5000")
+    port = environ.get("GunicornAppPort", "5000")
     app_module = environ.get("AppModule", "qhana_plugin_runner:create_app()")
     min_workers = environ.get("MinWorkers", "1")
     max_workers = environ.get("MaxWorkers", "2")
