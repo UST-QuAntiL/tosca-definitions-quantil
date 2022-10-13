@@ -21,7 +21,7 @@ job_callback = None
 
 def main():
     print('Starting PennyLane-App HTTP-Endpoint')
-    
+
     def pennylane_job(job, args):
         print('Invoking Pennylane App Algo')
         try:
@@ -29,19 +29,19 @@ def main():
             result = run_algo(device, args)
             print('result:', result)
             job.success(result)
-        except Exception as e: 
+        except Exception as e:
             print("Unexpected error invoking the PennyLane App Algo:", e)
             job.failed()
-			
+
     start_endpoint(pennylane_job)
-	
-	
+
+
 def get_shots_param(args):
     if 'shots' in args:
         return int(args["shots"])
     else:
         return 1
-    
+
 
 # Create PennyLane-App HTTP Endpoint
 
@@ -58,11 +58,11 @@ class Job():
     def success(self, result):
         self.status = Status.FINISHED
         self.result = {'status': 'success', 'output': result}
-    
+
     def failed(self):
         self.status = Status.FINISHED
         self.result = {'status': 'failed'}
-    
+
     def to_dict(self):
         return {'id':self.id, 'status':self.status, 'result':self.result}
 
@@ -70,7 +70,7 @@ class Job():
 def after_request(response):
     header = response.headers
     header['Access-Control-Allow-Origin'] = '*'
-    return response		
+    return response
 
 @app.route('/jobs', methods=['POST'])
 def create_job():
@@ -103,13 +103,13 @@ def get_result(id):
             return 'Job not finished', 418
     else:
         raise NotFound(detail = 'Job not found')
-		
+
 def start_endpoint(new_job_callback):
     global job_callback
     job_callback = new_job_callback
     app.run(host='0.0.0.0', port=int(sys.argv[1]), debug=True)
-	
-		
+
+
 # Create PennyLane-App Config
 
 def get_config(key, default=None) -> Optional[str]:
@@ -117,7 +117,7 @@ def get_config(key, default=None) -> Optional[str]:
     if tmp == '':
         return default
     return tmp
-	
+
 def get_device():
     device_name = get_config('DEVICE')
     provider_name = get_config('PROVIDER')
@@ -134,7 +134,6 @@ def get_device():
     else:
         raise "Neither DEVICE nor PROVIDER is defined!"
 
-	
+
 if __name__ == '__main__':
     main()
-	
