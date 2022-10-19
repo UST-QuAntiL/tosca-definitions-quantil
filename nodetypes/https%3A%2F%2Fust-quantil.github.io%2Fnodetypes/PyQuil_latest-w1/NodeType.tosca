@@ -9,7 +9,7 @@
                 <Operation name="connectTo">
                     <InputParameters>
                         <InputParameter name="QPU_NAME" type="xsd:string" required="no"/>
-                        <InputParameter name="TARGET_CointainerIP" type="xsd:string" required="no"/>
+                        <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="no"/>
                         <InputParameter name="QVM_PORT" type="xsd:string" required="no"/>
                     </InputParameters>
                 </Operation>
