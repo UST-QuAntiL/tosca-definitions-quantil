@@ -29,6 +29,7 @@ def pyquil_job(job, args):
     print('Invoking PyQuil App Algo')
     try:
         device = get_device()
+
         result = run_algo(device, args)
         print('result:', result)
         job.success(result)
@@ -137,6 +138,7 @@ def get_device():
     qvm_port = os.getenv('QVM_PORT', '5000')
     print("QVM_HOSTNAME: %s" % qvm_hostname)
     print("QVM_PORT: %s" % qvm_port)
+    print("QPU_NAME: %s" % qpu_name)
     qvm_connection = f"http://{qvm_hostname}:{qvm_port}"
     os.environ["QCS_SETTINGS_APPLICATIONS_PYQUIL_QVM_URL"] = qvm_connection
     print("Established connection to QVM")
@@ -144,7 +146,7 @@ def get_device():
     return get_qc(qpu_name)
 
 
-if __name__ == '__main__':
+def main2():
     # set environment variables
     print("Set environment variables")
     os.environ["QPU_NAME"] = "10q-qvm"
@@ -166,3 +168,7 @@ if __name__ == '__main__':
     # run job
     pyquil_job(job, args)
     print("Job status: %s" % job.status)
+
+
+if __name__ == '__main__':
+    main()
