@@ -8,6 +8,7 @@ from pyquil_app_algo import run_algo
 import os
 import sys
 from dotenv import load_dotenv
+from pyquil import get_qc
 
 load_dotenv()
 
@@ -18,23 +19,22 @@ jobs = {}
 job_callback = None
 
 
-# PennyLane-App Main
-
+# PyQuil-App Main
 def main():
-    print('Starting PennyLane-App HTTP-Endpoint')
+    print('Starting PyQuil-App HTTP-Endpoint')
+    start_endpoint(pyquil_job)
 
-    def pennylane_job(job, args):
-        print('Invoking Pennylane App Algo')
-        try:
-            device = get_device()
-            result = run_algo(device, args)
-            print('result:', result)
-            job.success(result)
-        except Exception as e:
-            print("Unexpected error invoking the PennyLane App Algo:", e)
-            job.failed()
 
-    start_endpoint(pennylane_job)
+def pyquil_job(job, args):
+    print('Invoking PyQuil App Algo')
+    try:
+        device = get_device()
+        result = run_algo(device, args)
+        print('result:', result)
+        job.success(result)
+    except Exception as e:
+        print("Unexpected error invoking the PyQuil App Algo:", e)
+        job.failed()
 
 
 def get_shots_param(args):
@@ -44,7 +44,7 @@ def get_shots_param(args):
         return 1
 
 
-# Create PennyLane-App HTTP Endpoint
+# Create PyQuil-App HTTP Endpoint
 
 class Status():
     FINISHED = 'finished'
@@ -119,7 +119,7 @@ def start_endpoint(new_job_callback):
     app.run(host='0.0.0.0', port=int(sys.argv[1]), debug=True)
 
 
-# Create PennyLane-App Config
+# Create PyQuil-App Config
 
 def get_config(key, default=None) -> Optional[str]:
     tmp = os.getenv(key, default)
@@ -129,8 +129,40 @@ def get_config(key, default=None) -> Optional[str]:
 
 
 def get_device():
-    return '10q-qvm'
+    # Set up a connection to a quantum computer.
+    # To make pyquil's get_qc() method use a non-standard host or port, environment variable QCS_SETTINGS_APPLICATIONS_PYQUIL_QVM_URL has to be set.
+    print("get_device from environment variables...")
+    qpu_name = os.getenv('QPU_NAME', '10q-qvm')
+    qvm_hostname = os.getenv('QVM_HOSTNAME', 'localhost')
+    qvm_port = os.getenv('QVM_PORT', '5000')
+    print("QVM_HOSTNAME: %s" % qvm_hostname)
+    print("QVM_PORT: %s" % qvm_port)
+    qvm_connection = f"http://{qvm_hostname}:{qvm_port}"
+    os.environ["QCS_SETTINGS_APPLICATIONS_PYQUIL_QVM_URL"] = qvm_connection
+    print("Established connection to QVM")
+    print("Environment variable QCS_SETTINGS_APPLICATIONS_PYQUIL_QVM_URL is set to %s" % qvm_connection)
+    return get_qc(qpu_name)
 
 
 if __name__ == '__main__':
-    main()
+    # set environment variables
+    print("Set environment variables")
+    os.environ["QPU_NAME"] = "10q-qvm"
+    os.environ["QVM_HOSTNAME"] = "localhost"
+    os.environ["QVM_PORT"] = "5000"
+
+    # create job
+    job_uuid = str(uuid.uuid4())
+    print("Create job with uuid %s" % job_uuid)
+    job = Job(job_uuid)
+
+    # program arguments
+    args = {
+        'clauses': '[[-1, -1, -1], [1, -1, 1], [1, 1, -1], [1, -1, -1], [-1, 1, 1]]',
+        'shots': '100'
+    }
+    print("Program arguments: %s" % args)
+
+    # run job
+    pyquil_job(job, args)
+    print("Job status: %s" % job.status)
