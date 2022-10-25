@@ -1,3 +1,5 @@
+print('first line of pyquil adapter.py')
+
 from flask import request, redirect, url_for
 from flask_api.exceptions import APIException, NotFound
 from flask_api import FlaskAPI
@@ -39,13 +41,12 @@ def pyquil_job(job, args):
 
 
 def get_shots_param(args):
+    print('get_shots')
     if 'shots' in args:
         return int(args["shots"])
     else:
         return 1
 
-
-# Create PyQuil-App HTTP Endpoint
 
 class Status():
     FINISHED = 'finished'
@@ -72,6 +73,7 @@ class Job():
 
 @app.after_request  # CORS
 def after_request(response):
+    print('after_request')
     header = response.headers
     header['Access-Control-Allow-Origin'] = '*'
     return response
@@ -79,6 +81,7 @@ def after_request(response):
 
 @app.route('/jobs', methods=['POST'])
 def create_job():
+    print('create_job')
     try:
         job_uuid = str(uuid.uuid4())
         job = Job(job_uuid)
@@ -94,6 +97,7 @@ def create_job():
 
 @app.route('/jobs/<string:id>', methods=['GET'])
 def get_job(id):
+    print('get_job of %s' % id)
     if id in jobs:
         if jobs[id].status == Status.FINISHED:
             return redirect(url_for('get_result', id=id), code=303)
@@ -105,6 +109,7 @@ def get_job(id):
 
 @app.route('/jobs/<string:id>/result', methods=['GET'])
 def get_result(id):
+    print('get_result of %s ' % id)
     if id in jobs:
         if jobs[id].result:
             return jobs[id].result
@@ -115,6 +120,7 @@ def get_result(id):
 
 
 def start_endpoint(new_job_callback):
+    print('start_endpoint')
     global job_callback
     job_callback = new_job_callback
     app.run(host='0.0.0.0', port=int(sys.argv[1]), debug=True)
@@ -123,6 +129,7 @@ def start_endpoint(new_job_callback):
 # Create PyQuil-App Config
 
 def get_config(key, default=None) -> Optional[str]:
+    print('get_config(%s)' % key)
     tmp = os.getenv(key, default)
     if tmp == '':
         return default
@@ -171,4 +178,5 @@ def main2():
 
 
 if __name__ == '__main__':
+    print('__main__')
     main()
