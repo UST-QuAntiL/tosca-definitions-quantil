@@ -184,6 +184,20 @@ public abstract class SoapUtil {
         return null;
     }
 
+    public static void logHeaders(MessageContext messageContext) {
+        SaajSoapMessage soapRequest = (SaajSoapMessage) messageContext.getRequest();
+
+        try {
+            Iterator<SOAPHeaderElement> itr = soapRequest.getSaajMessage().getSOAPHeader().examineAllHeaderElements();
+            while (itr.hasNext()) {
+                SOAPHeaderElement header = itr.next();
+                LOG.info("Found header with name '{}' and value '{}'", header.getNodeName(), header.getFirstChild().getTextContent());
+            }
+        } catch (SOAPException e) {
+            LOG.error("Error while parsing SOAP header!", e);
+        }
+    }
+
     public static String encode(String value) {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }

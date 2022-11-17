@@ -28,6 +28,7 @@ public class DockerContainerManagementInterfaceEndpoint {
     public void create(@RequestPayload CreateRequest request, MessageContext messageContext) {
         LOG.info("Create request received!");
 
+        SoapUtil.logHeaders(messageContext);
         OpenToscaHeaders openToscaHeaders = SoapUtil.parseHeaders(messageContext);
         InvokeResponse invokeResponse = new InvokeResponse();
 
@@ -38,6 +39,7 @@ public class DockerContainerManagementInterfaceEndpoint {
     public void terminate(@RequestPayload TerminateRequest request, MessageContext messageContext) {
         LOG.info("Terminate request received");
 
+        SoapUtil.logHeaders(messageContext);
         OpenToscaHeaders openToscaHeaders = SoapUtil.parseHeaders(messageContext);
         InvokeResponse invokeResponse = new InvokeResponse();
 
