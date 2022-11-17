@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.opentosca.artifacttemplates</groupId>
-    <artifactId>DockerContainer__ContainerManagementInterface</artifactId>
+    <artifactId>PlanQK-Platform__ContainerInterface</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>DockerContainer__ContainerManagementInterface</name>
+    <name>PlanQK-Platform__ContainerInterface</name>
     <description>Implementation Artifact for the ContainerManagementInterface at the DockerContainer NodeType</description>
 
     <properties>
@@ -102,7 +102,7 @@
     </dependencies>
 
     <build>
-        <finalName>org_opentosca_artifactTemplates_DockerContainer__ContainerManagementInterface</finalName>
+        <finalName>io_github_ust-quantil_artifactTemplates_PlanQK-Platform__ContainerInterface</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
