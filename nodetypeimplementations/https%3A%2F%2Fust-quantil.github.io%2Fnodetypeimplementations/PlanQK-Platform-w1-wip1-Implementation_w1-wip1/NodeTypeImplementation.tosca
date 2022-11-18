@@ -4,5 +4,6 @@
         <ImplementationArtifacts>
             <ImplementationArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="PlanQK-Platform-IA" interfaceName="http://opentosca.org/interfaces/pattern/container" artifactType="otatyIgeneral:WAR-Java17" artifactRef="artifactTemplatesQuantil:PlanQK-Platform-IA_w1-wip1"/>
         </ImplementationArtifacts>
+        <DeploymentArtifacts/>
     </NodeTypeImplementation>
 </Definitions>
