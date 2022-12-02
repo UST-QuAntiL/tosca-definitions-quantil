@@ -49,9 +49,11 @@ public class DockerContainerManagementInterfaceEndpoint {
         File apiDefinition = new File("");  // TODO: get api definition file
         String quantumBackend = "NONE";
 
-        ServiceDto service = servicesApi.createService(serviceName, type, quantumBackend, description, null, null, userCode, apiDefinition);
+        // ServiceDto service = servicesApi.createService(serviceName, type, quantumBackend, description, null, null, userCode, apiDefinition);  // TODO: update arguments to new version of the api client
 
         InvokeResponse invokeResponse = new InvokeResponse();
+        invokeResponse.setMessageID(openToscaHeaders.messageId());
+        invokeResponse.setResult("finished");
 
         SoapUtil.sendSoapResponse(invokeResponse, InvokeResponse.class, openToscaHeaders.replyTo());
     }

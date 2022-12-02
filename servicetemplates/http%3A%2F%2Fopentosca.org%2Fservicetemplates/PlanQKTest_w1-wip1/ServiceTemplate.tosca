@@ -2,11 +2,33 @@
 <Definitions xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:selfservice="http://www.eclipse.org/winery/model/selfservice" xmlns:testwineryopentoscaorg="http://test.winery.opentosca.org" targetNamespace="http://opentosca.org/servicetemplates" id="otsteIgeneral-PlanQKTest_w1-wip1">
     <ServiceTemplate name="PlanQKTest_w1-wip1" targetNamespace="http://opentosca.org/servicetemplates" id="PlanQKTest_w1-wip1">
         <TopologyTemplate>
-            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-Platform_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-Platform_w1-wip1" id="PlanQK-Platform_w1-wip1_0" winery:x="630" winery:y="424"/>
-            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-Service_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-Service_w1-wip1" id="PlanQK-Service_w1-wip1_0" winery:x="635" winery:y="196"/>
+            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-Platform_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-Platform_w1-wip1" id="PlanQK-Platform_w1-wip1_0" winery:x="641" winery:y="582">
+                <Properties>
+                    <Properties xmlns="http://www.example.org">
+                        <PlanqkApiKey>get_input: PlanqkApiKey</PlanqkApiKey>
+                    </Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-Service_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-Service_w1-wip1" id="PlanQK-Service_w1-wip1_0" winery:x="637" winery:y="214">
+                <Properties>
+                    <Properties xmlns="http://www.example.org">
+                        <ServiceName>TestService</ServiceName>
+                        <ServiceDescription>test service</ServiceDescription>
+                        <QuantumBackend>NONE</QuantumBackend>
+                    </Properties>
+                </Properties>
+                <DeploymentArtifacts>
+                    <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="UserCode" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="artifactTemplatesQuantil:PlanQK-Service-User-Code_-DA-w1-wip1"/>
+                </DeploymentArtifacts>
+            </NodeTemplate>
+            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-ServiceInfo_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-ServiceInfo_w1-wip1" id="PlanQK-ServiceInfo_w1-wip1_0" winery:x="643" winery:y="7"/>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0">
                 <SourceElement ref="PlanQK-Service_w1-wip1_0"/>
                 <TargetElement ref="PlanQK-Platform_w1-wip1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1">
+                <SourceElement ref="PlanQK-ServiceInfo_w1-wip1_0"/>
+                <TargetElement ref="PlanQK-Service_w1-wip1_0"/>
             </RelationshipTemplate>
         </TopologyTemplate>
     </ServiceTemplate>

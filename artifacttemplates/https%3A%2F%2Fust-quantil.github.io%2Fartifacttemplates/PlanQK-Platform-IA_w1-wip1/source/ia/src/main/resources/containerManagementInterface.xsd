@@ -17,6 +17,9 @@
     <xs:element name="invokeResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="MessageID" type="xs:string"/>
+                <xs:element minOccurs="0" name="Error" type="xs:string"/>
+                <xs:element minOccurs="0" name="Result" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
