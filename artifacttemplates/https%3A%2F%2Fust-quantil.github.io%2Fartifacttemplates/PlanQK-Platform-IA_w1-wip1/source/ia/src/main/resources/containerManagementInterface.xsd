@@ -3,13 +3,10 @@
     <xs:element name="createRequest">
         <xs:complexType>
             <xs:sequence>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="terminateRequest">
-        <xs:complexType>
-            <xs:sequence>
+                <xs:element form="qualified" minOccurs="0" name="PlanqkApiKey" type="xs:string"/>
+                <xs:element form="qualified" minOccurs="0" name="ServiceName" type="xs:string"/>
+                <xs:element form="qualified" minOccurs="0" name="ServiceDescription" type="xs:string"/>
+                <xs:element form="qualified" minOccurs="0" name="QuantumBackend" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -20,6 +17,14 @@
                 <xs:element name="MessageID" type="xs:string"/>
                 <xs:element minOccurs="0" name="Error" type="xs:string"/>
                 <xs:element minOccurs="0" name="Result" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="terminateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element form="qualified" minOccurs="0" name="PlanqkApiKey" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
