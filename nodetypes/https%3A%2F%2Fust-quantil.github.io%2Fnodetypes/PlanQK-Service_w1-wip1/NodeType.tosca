@@ -31,12 +31,14 @@
                         <InputParameter name="QuantumBackend" type="xsd:string" required="yes"/>
                     </InputParameters>
                     <OutputParameters>
-                        <OutputParameter name="Result" type="xsd:string" required="no"/>
+                        <OutputParameter name="Result" type="xsd:string" required="yes"/>
+                        <OutputParameter name="ServiceID" type="xsd:string" required="yes"/>
                     </OutputParameters>
                 </Operation>
                 <Operation name="terminate">
                     <InputParameters>
                         <InputParameter name="PlanqkApiKey" type="xsd:string" required="yes"/>
+                        <InputParameter name="ServiceID" type="xsd:string" required="yes"/>
                     </InputParameters>
                     <OutputParameters>
                         <OutputParameter name="Result" type="xsd:string" required="no"/>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.UUID;
 
 import de.stoneone.planqk.api.ServicePlatformServicesApi;
 import de.stoneone.planqk.api.model.ServiceDto;
@@ -135,6 +136,8 @@ public class DockerContainerManagementInterfaceEndpoint {
         InvokeResponse invokeResponse = new InvokeResponse();
         invokeResponse.setMessageID(openToscaHeaders.messageId());
         invokeResponse.setResult("finished");
+        assert service.getId() != null;
+        invokeResponse.setServiceID(service.getId().toString());
 
         SoapUtil.sendSoapResponse(invokeResponse, InvokeResponse.class, openToscaHeaders.replyTo());
     }
@@ -146,7 +149,37 @@ public class DockerContainerManagementInterfaceEndpoint {
         SoapUtil.logHeaders(messageContext);
         OpenToscaHeaders openToscaHeaders = SoapUtil.parseHeaders(messageContext);
 
-        // TODO: delete service
+        String apiKey = request.getPlanqkApiKey();
+
+        if (apiKey.equals("")) {
+            LOG.error("API key is empty");
+
+            InvokeResponse invokeResponse = new InvokeResponse();
+            invokeResponse.setMessageID(openToscaHeaders.messageId());
+            invokeResponse.setError("Error: API key is empty");
+
+            SoapUtil.sendSoapResponse(invokeResponse, InvokeResponse.class, openToscaHeaders.replyTo());
+            return;
+        }
+
+        String serviceId = request.getServiceID();
+
+        if (serviceId.equals("")) {
+            LOG.error("Service ID is empty");
+
+            InvokeResponse invokeResponse = new InvokeResponse();
+            invokeResponse.setMessageID(openToscaHeaders.messageId());
+            invokeResponse.setError("Error: Service ID is empty");
+
+            SoapUtil.sendSoapResponse(invokeResponse, InvokeResponse.class, openToscaHeaders.replyTo());
+            return;
+        }
+
+        ApiClient apiClient = new ApiClient("apiKey", apiKey);
+        apiClient.setFeignBuilder(apiClient.getFeignBuilder().decoder(new CustomDecoder(apiClient.getObjectMapper())));
+
+        ServicePlatformServicesApi servicesApi = apiClient.buildClient(ServicePlatformServicesApi.class);
+        servicesApi.deleteService(UUID.fromString(serviceId), null);
 
         InvokeResponse invokeResponse = new InvokeResponse();
         invokeResponse.setMessageID(openToscaHeaders.messageId());

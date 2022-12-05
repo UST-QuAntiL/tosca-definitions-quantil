@@ -21,13 +21,19 @@
                     <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:artifactTemplatesQuantil="https://ust-quantil.github.io/artifacttemplates" name="UserCode" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="artifactTemplatesQuantil:PlanQK-Service-User-Code_-DA-w1-wip1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-ServiceInfo_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-ServiceInfo_w1-wip1" id="PlanQK-ServiceInfo_w1-wip1_0" winery:x="643" winery:y="7"/>
+            <NodeTemplate xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes" name="PlanQK-ServiceInfo_w1-wip1" minInstances="1" maxInstances="1" type="nodeTypesQuantil:PlanQK-ServiceInfo_w1-wip1" id="PlanQK-ServiceInfo_w1-wip1_1" winery:x="639" winery:y="-8">
+                <Properties>
+                    <PlanQK-ServiceInfo_w1-wip1 xmlns="https://ust-quantil.github.io/nodetypes">
+                        <ServiceID/>
+                    </PlanQK-ServiceInfo_w1-wip1>
+                </Properties>
+            </NodeTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0">
                 <SourceElement ref="PlanQK-Service_w1-wip1_0"/>
                 <TargetElement ref="PlanQK-Platform_w1-wip1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1">
-                <SourceElement ref="PlanQK-ServiceInfo_w1-wip1_0"/>
+                <SourceElement ref="PlanQK-ServiceInfo_w1-wip1_1"/>
                 <TargetElement ref="PlanQK-Service_w1-wip1_0"/>
             </RelationshipTemplate>
         </TopologyTemplate>
