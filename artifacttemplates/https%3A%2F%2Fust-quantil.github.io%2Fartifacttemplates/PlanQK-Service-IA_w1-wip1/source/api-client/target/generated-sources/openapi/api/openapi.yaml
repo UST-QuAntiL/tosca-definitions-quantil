@@ -1,0 +1,2524 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: info@stoneone.de
+    name: StoneOne AG
+    url: https://stoneone.de
+  description: OpenAPI definition for the Platform and Ecosystem for Quantum-assisted
+    Artificial Intelligence Platform
+  title: PlanQK Platform OpenAPI definition
+  version: v1
+servers:
+- description: Generated server url
+  url: https://platform.planqk.de/qc-catalog
+tags:
+- name: Service Platform - Services
+- name: Service Platform - Marketplace
+- name: Service Platform - Applications
+- name: Service Platform - Subscriptions
+paths:
+  /{serviceId}/versions/{versionId}/source-code:
+    put:
+      description: Updates the source code of a service.
+      operationId: updateSourceCode
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/updateSourceCode_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /{serviceId}/versions/{versionId}/api-spec:
+    put:
+      description: Updates the API definition of a service.
+      operationId: updateApiDefinition
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/updateApiDefinition_request'
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}:
+    get:
+      description: Gets a specific service version and its basic properties.
+      operationId: getServiceVersion
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+    put:
+      description: Updates a specific service version's description or industry assignments.
+      operationId: updateServiceVersion
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVersionRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: application/json
+      x-accepts: application/json
+  /v2/services:
+    post:
+      description: "Creates a new service within your organization or for yourself,\
+        \ must be either of type MANAGED or EXTERNAL. For managed services, it is\
+        \ required to upload a \"userCode\" file within a request. For external services,\
+        \ you must supply a valid \"productionEndpoint\" URL."
+      operationId: createService
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: description
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - MANAGED
+          - EXTERNAL
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: quantumBackend
+        required: true
+        schema:
+          enum:
+          - IBM
+          - IONQ
+          - DWAVE
+          - NONE
+          - AZURE_IONQ
+          - AZURE_RIGETTI
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: productionEndpoint
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: usePlatformToken
+        required: false
+        schema:
+          default: "FALSE"
+          enum:
+          - "TRUE"
+          - "FALSE"
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: cpu
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: memory
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/createService_request'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDto'
+          description: Created
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+        "422":
+          description: Unprocessable Entity
+        "500":
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /v2/external-services:
+    post:
+      description: "Creates a new external service within your organization or for\
+        \ yourself, which is running somewhere (e.g., on your own infrastructure)\
+        \ and you just want the PlanQK platform to manage the access to it."
+      operationId: createExternalService
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: description
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: quantumBackend
+        required: false
+        schema:
+          default: NONE
+          enum:
+          - IBM
+          - IONQ
+          - DWAVE
+          - NONE
+          - AZURE_IONQ
+          - AZURE_RIGETTI
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: url
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: securityConfiguration
+        required: false
+        schema:
+          default: NONE
+          enum:
+          - NONE
+          - BASIC
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: username
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: password
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/createExternalService_request'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDto'
+          description: Created
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+        "422":
+          description: Unprocessable Entity
+        "500":
+          description: Internal Server Error
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+  /v2/applications:
+    get:
+      description: Gets a list of all applications.
+      operationId: getApplications
+      parameters:
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationDto'
+                type: array
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+    post:
+      description: Creates a new application within your organization or for yourself.
+      operationId: createApplication
+      parameters:
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationDto'
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-content-type: application/json
+      x-accepts: application/json
+  /v2/applications/{id}/subscriptions:
+    get:
+      description: "Gets a list of all subscriptions of an application. This information\
+        \ concerns the services this application is subscribe to, either internal\
+        \ or public (through the marketplace API) subscriptions."
+      operationId: getApplicationSubscriptions
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SubscriptionDto'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+    post:
+      description: Creates a subscription to internally published services.
+      operationId: createInternalSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInternalSubscriptionRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-content-type: application/json
+      x-accepts: application/json
+  /v2/applications/{id}/access-token:
+    post:
+      description: Gets the access token for your application. The access token must
+        be used to authenticate execution requests to subscribed services.
+      operationId: getAccessToken
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+  /v2/apis/{id}/subscriptions:
+    post:
+      description: "Creates a subscription to a publicly published service. To subscribe\
+        \ a service, you must supply the ID of an application as well as the ID of\
+        \ your selected pricing plan. The ID of a pricing plan can be found in the\
+        \ service details."
+      operationId: createSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Marketplace
+      x-content-type: application/json
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/unpublish:
+    post:
+      deprecated: true
+      description: "This endpoint is deprecated and will be replaced by the \"/commands\"\
+        \ endpoint. However, it unpublishes a service forcefully and cancels all active\
+        \ subscriptions while removing all use case relations."
+      operationId: unpublishService
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/publish:
+    post:
+      description: Publishes a service publicly to the marketplace. Publicly published
+        services can be subscribed and consumed by other users of the PlanQK platform.
+      operationId: publishService
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/publish-internal:
+    post:
+      description: Publishes a service internally. Internally published services can
+        only be subscribed and consumed by yourself or within your organization.
+      operationId: publishServiceInternal
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDefinitionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/commands:
+    post:
+      description: "This endpoint is used to execute certain commands for a specific\
+        \ service definition. The \"UNPUBLISH\" command tries to unpublish a service\
+        \ (service definition), however it returns a 409 Conflict in case it still\
+        \ has active subscriptions or is used in use case relations. The \"UNPUBLISH_FORCE\"\
+        \ command will forcefully unpublish a service definition, i.e., it cancels\
+        \ all active subscriptions and all use case relations will be removed."
+      operationId: commands
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceDefinitionCommand'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "409":
+          description: Conflict
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-content-type: application/json
+      x-accepts: application/json
+  /v2/applications/{id}:
+    delete:
+      description: Deletes an application.
+      operationId: deleteApplication
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+    get:
+      description: Gets an specific application and its basic properties.
+      operationId: getApplication
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+  /v2/applications/{id}/subscriptions/{subscriptionId}:
+    delete:
+      description: Deletes a specific subscription of an application.
+      operationId: deleteApplicationSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+    get:
+      description: Gets the information about a specific subscription.
+      operationId: getApplicationSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Applications
+      x-accepts: application/json
+  /v2/apis:
+    get:
+      description: Gets a list of all publicly published service on the PlanQK platform.
+      operationId: findServices
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApiDto'
+                type: array
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Marketplace
+      x-accepts: application/json
+  /v2/apis/{id}:
+    get:
+      description: Gets a specific publicly published service and its basic properties.
+      operationId: findService
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Marketplace
+      x-accepts: application/json
+  /v2/apis/{id}/logo:
+    get:
+      description: Retrieves the logo of an API.
+      operationId: getLogo
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  format: byte
+                  type: string
+                type: array
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Marketplace
+      x-accepts: application/json
+  /subscriptions/{id}:
+    get:
+      description: Retrieves a specific subscription.
+      operationId: getSubscription
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDto'
+          description: No Content
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Subscriptions
+      x-accepts: application/json
+  /subscriptions/{id}/executions:
+    get:
+      description: Retrieves the executions of a subscription.
+      operationId: getSubscriptionExecutions
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceExecutionDto'
+                type: array
+          description: No Content
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Subscriptions
+      x-accepts: application/json
+  /services:
+    get:
+      description: Gets a list of all services. Use the "lifecycle" parameter to filter
+        the resulting list based on the service' lifecycle state.
+      operationId: getServices
+      parameters:
+      - explode: true
+        in: query
+        name: lifecycle
+        required: false
+        schema:
+          enum:
+          - ERROR
+          - CREATING
+          - CREATED
+          - ACCESSIBLE
+          - PUBLISHED
+          type: string
+        style: form
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceDto'
+                type: array
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/subscriptions:
+    get:
+      description: Gets a list of all active subscriptions to a specific service version.
+      operationId: getServiceSubscriptions
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SubscriptionDto'
+                type: array
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/source-code:
+    get:
+      description: Gets the source code of service.
+      operationId: getSourceCode
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                format: byte
+                type: string
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/octet-stream
+  /services/{serviceId}/versions/{versionId}/build-status:
+    get:
+      description: "Gets the build status of a managed service. For example, only\
+        \ after a successful build the service can be published, either internally\
+        \ or publicly."
+      operationId: getBuildStatus
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildJobDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{serviceId}/versions/{versionId}/api-spec:
+    get:
+      description: Gets the API definition of a service.
+      operationId: getApiDefinition
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: versionId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{id}:
+    delete:
+      description: Deletes a service. Published services need to be unpublish before
+        it can be deleted.
+      operationId: deleteService
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+    get:
+      description: Gets a specific service and its basic properties.
+      operationId: getService
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDto'
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /services/{id}/versions:
+    get:
+      description: "Gets a list of all service versions. Note: At the moment, there\
+        \ is only one service version per service."
+      operationId: getServiceVersions
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: The ID of your organization in case you want to perform operations
+          in this context. Leave it empty to operate in your personal space.
+        explode: false
+        in: header
+        name: X-OrganizationId
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceDefinitionDto'
+                type: array
+                uniqueItems: true
+          description: OK
+        "404":
+          description: Not Found
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+  /my/accounts:
+    get:
+      operationId: getAccounts
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccountDto'
+                type: array
+          description: OK
+      tags:
+      - user-account-controller
+      x-accepts: application/json
+  /industries:
+    get:
+      description: 'Gets a list of all industries. '
+      operationId: getIndustries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/IndustryDto'
+                type: array
+          description: OK
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+      security:
+      - oauth2: []
+      - apiKey: []
+      tags:
+      - Service Platform - Services
+      x-accepts: application/json
+components:
+  schemas:
+    CpuConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/ResourceConfiguration'
+      - $ref: '#/components/schemas/CpuConfiguration_allOf'
+      type: object
+    IndustryDto:
+      example:
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
+    MemoryConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/ResourceConfiguration'
+      - $ref: '#/components/schemas/CpuConfiguration_allOf'
+      type: object
+    PlatformManagedConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/ResourceConfiguration'
+      type: object
+    PricingPlanDto:
+      example:
+        price: 0.8008281904610115
+        currency: currency
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: PER_SECOND
+      properties:
+        id:
+          format: uuid
+          type: string
+        price:
+          type: number
+        type:
+          enum:
+          - PER_SECOND
+          - PER_REQUEST
+          - FIXED_MONTHLY
+          - FREE
+          type: string
+        currency:
+          type: string
+      type: object
+    ResourceConfiguration:
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          type: string
+      type: object
+    ServiceDefinitionDto:
+      example:
+        modifiedAt: modifiedAt
+        configurations:
+        - null
+        - null
+        quantumBackend: IBM
+        pricingPlans:
+        - price: 0.8008281904610115
+          currency: currency
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: PER_SECOND
+        - price: 0.8008281904610115
+          currency: currency
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: PER_SECOND
+        description: description
+        productionEndpoint: productionEndpoint
+        type: MANAGED
+        version: version
+        lifecycle: ERROR
+        createdAt: createdAt
+        createdBy: createdBy
+        industries:
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        context: context
+        gatewayEndpoint: gatewayEndpoint
+        modifiedBy: modifiedBy
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        version:
+          type: string
+        name:
+          type: string
+        context:
+          type: string
+        description:
+          type: string
+        productionEndpoint:
+          type: string
+        gatewayEndpoint:
+          type: string
+        quantumBackend:
+          enum:
+          - IBM
+          - IONQ
+          - DWAVE
+          - NONE
+          - AZURE_IONQ
+          - AZURE_RIGETTI
+          type: string
+        type:
+          enum:
+          - MANAGED
+          - EXTERNAL
+          type: string
+        pricingPlans:
+          items:
+            $ref: '#/components/schemas/PricingPlanDto'
+          type: array
+        lifecycle:
+          enum:
+          - ERROR
+          - CREATING
+          - CREATED
+          - ACCESSIBLE
+          - PUBLISHED
+          type: string
+        industries:
+          items:
+            $ref: '#/components/schemas/IndustryDto'
+          type: array
+          uniqueItems: true
+        createdAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        modifiedAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        configurations:
+          items:
+            $ref: '#/components/schemas/ServiceDefinitionDto_configurations_inner'
+          type: array
+          uniqueItems: true
+      type: object
+    UpdateVersionRequest:
+      example:
+        industries:
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - name: name
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        description: description
+      properties:
+        description:
+          type: string
+        industries:
+          items:
+            $ref: '#/components/schemas/IndustryDto'
+          type: array
+      type: object
+    ServiceDto:
+      example:
+        accessPermissionOfLoggedInUser: VIEWER
+        name: name
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        serviceDefinitions:
+        - modifiedAt: modifiedAt
+          configurations:
+          - null
+          - null
+          quantumBackend: IBM
+          pricingPlans:
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          description: description
+          productionEndpoint: productionEndpoint
+          type: MANAGED
+          version: version
+          lifecycle: ERROR
+          createdAt: createdAt
+          createdBy: createdBy
+          industries:
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          context: context
+          gatewayEndpoint: gatewayEndpoint
+          modifiedBy: modifiedBy
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        - modifiedAt: modifiedAt
+          configurations:
+          - null
+          - null
+          quantumBackend: IBM
+          pricingPlans:
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          description: description
+          productionEndpoint: productionEndpoint
+          type: MANAGED
+          version: version
+          lifecycle: ERROR
+          createdAt: createdAt
+          createdBy: createdBy
+          industries:
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          context: context
+          gatewayEndpoint: gatewayEndpoint
+          modifiedBy: modifiedBy
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        serviceDefinitions:
+          items:
+            $ref: '#/components/schemas/ServiceDefinitionDto'
+          type: array
+        accessPermissionOfLoggedInUser:
+          enum:
+          - VIEWER
+          - MAINTAINER
+          - OWNER
+          type: string
+      type: object
+    CreateApplicationRequest:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    ApplicationDto:
+      example:
+        accessPermissionOfLoggedInUser: VIEWER
+        name: name
+        subscriptionCount: 0
+        description: description
+        groups:
+        - groups
+        - groups
+        attributes: "{}"
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        attributes:
+          type: object
+        groups:
+          items:
+            type: string
+          type: array
+        subscriptionCount:
+          format: int32
+          type: integer
+        accessPermissionOfLoggedInUser:
+          enum:
+          - VIEWER
+          - MAINTAINER
+          - OWNER
+          type: string
+      type: object
+    CreateInternalSubscriptionRequest:
+      example:
+        applicationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        serviceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        applicationId:
+          format: uuid
+          type: string
+        serviceId:
+          format: uuid
+          type: string
+      type: object
+    ApiDto:
+      example:
+        serviceType: MANAGED
+        quantumBackend: IBM
+        pricingPlans:
+        - price: 0.8008281904610115
+          currency: currency
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: PER_SECOND
+        - price: 0.8008281904610115
+          currency: currency
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: PER_SECOND
+        rating: 0.8008281904610115
+        description: description
+        version: version
+        pricingCategory: FREE
+        lifecycle: ERROR
+        provider: provider
+        industries:
+        - industries
+        - industries
+        name: name
+        context: context
+        gatewayEndpoint: gatewayEndpoint
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        serviceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          format: uuid
+          type: string
+        serviceId:
+          format: uuid
+          type: string
+        name:
+          type: string
+        context:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        gatewayEndpoint:
+          type: string
+        quantumBackend:
+          enum:
+          - IBM
+          - IONQ
+          - DWAVE
+          - NONE
+          - AZURE_IONQ
+          - AZURE_RIGETTI
+          type: string
+        pricingPlans:
+          items:
+            $ref: '#/components/schemas/PricingPlanDto'
+          type: array
+        pricingCategory:
+          enum:
+          - FREE
+          - FREEMIUM
+          - COMMERCIAL
+          type: string
+        industries:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        provider:
+          type: string
+        lifecycle:
+          enum:
+          - ERROR
+          - CREATING
+          - CREATED
+          - ACCESSIBLE
+          - PUBLISHED
+          type: string
+        serviceType:
+          enum:
+          - MANAGED
+          - EXTERNAL
+          type: string
+        rating:
+          format: double
+          type: number
+      type: object
+    SubscriptionDto:
+      example:
+        pricingPlan:
+          price: 0.8008281904610115
+          currency: currency
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: PER_SECOND
+        application:
+          accessPermissionOfLoggedInUser: VIEWER
+          name: name
+          subscriptionCount: 0
+          description: description
+          groups:
+          - groups
+          - groups
+          attributes: "{}"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: id
+        api:
+          serviceType: MANAGED
+          quantumBackend: IBM
+          pricingPlans:
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          rating: 0.8008281904610115
+          description: description
+          version: version
+          pricingCategory: FREE
+          lifecycle: ERROR
+          provider: provider
+          industries:
+          - industries
+          - industries
+          name: name
+          context: context
+          gatewayEndpoint: gatewayEndpoint
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          serviceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        id:
+          type: string
+        application:
+          $ref: '#/components/schemas/ApplicationDto'
+        api:
+          $ref: '#/components/schemas/ApiDto'
+        pricingPlan:
+          $ref: '#/components/schemas/PricingPlanDto'
+      type: object
+    AccessTokenDto:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        usedAt: 2000-01-23T04:56:07.000+00:00
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        scopes:
+        - API
+        - API
+        value: value
+        expiresAt: 2000-01-23
+        token: token
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        scopes:
+          items:
+            enum:
+            - API
+            - QUANTUM_TOKENS
+            type: string
+          type: array
+          uniqueItems: true
+        createdAt:
+          format: date-time
+          type: string
+        usedAt:
+          format: date-time
+          type: string
+        expiresAt:
+          format: date
+          type: string
+        value:
+          type: string
+        token:
+          type: string
+      type: object
+    CreateSubscriptionRequest:
+      example:
+        pricingPlanId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        applicationId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        applicationId:
+          format: uuid
+          type: string
+        pricingPlanId:
+          format: uuid
+          type: string
+      type: object
+    ServiceDefinitionCommand:
+      example:
+        type: UNPUBLISH
+      properties:
+        type:
+          enum:
+          - UNPUBLISH
+          - UNPUBLISH_FORCE
+          type: string
+      type: object
+    ServiceExecutionDto:
+      example:
+        createdAt: createdAt
+        application:
+          accessPermissionOfLoggedInUser: VIEWER
+          name: name
+          subscriptionCount: 0
+          description: description
+          groups:
+          - groups
+          - groups
+          attributes: "{}"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        endedAt: endedAt
+        serviceDefinition:
+          modifiedAt: modifiedAt
+          configurations:
+          - null
+          - null
+          quantumBackend: IBM
+          pricingPlans:
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          - price: 0.8008281904610115
+            currency: currency
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+            type: PER_SECOND
+          description: description
+          productionEndpoint: productionEndpoint
+          type: MANAGED
+          version: version
+          lifecycle: ERROR
+          createdAt: createdAt
+          createdBy: createdBy
+          industries:
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          - name: name
+            id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          context: context
+          gatewayEndpoint: gatewayEndpoint
+          modifiedBy: modifiedBy
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: UNKNOWN
+      properties:
+        id:
+          format: uuid
+          type: string
+        status:
+          enum:
+          - UNKNOWN
+          - PENDING
+          - RUNNING
+          - SUCCEEDED
+          - FAILED
+          type: string
+        createdAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        endedAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        serviceDefinition:
+          $ref: '#/components/schemas/ServiceDefinitionDto'
+        application:
+          $ref: '#/components/schemas/ApplicationDto'
+      type: object
+    BuildJobDto:
+      example:
+        createdAt: createdAt
+        validationResult:
+          summary: summary
+          messages:
+          - messages
+          - messages
+          state: SUCCESS
+        step: BUILD_IMAGE
+        status: STATUS_UNKNOWN
+        finishedAt: finishedAt
+      properties:
+        status:
+          enum:
+          - STATUS_UNKNOWN
+          - PENDING
+          - QUEUED
+          - WORKING
+          - SUCCESS
+          - FAILURE
+          - INTERNAL_ERROR
+          - TIMEOUT
+          - CANCELLED
+          - EXPIRED
+          - UNRECOGNIZED
+          type: string
+        step:
+          enum:
+          - BUILD_IMAGE
+          - PUSH_IMAGE
+          - DEPLOY_SERVICE
+          - UNKNOWN
+          type: string
+        createdAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        finishedAt:
+          pattern: "^\\d{4}\\-\\d{2}\\-\\d{2}\\s{1}\\d{2}\\:\\d{2}\\:\\d{2}$"
+          type: string
+        validationResult:
+          $ref: '#/components/schemas/ValidationResult'
+      type: object
+    ValidationResult:
+      example:
+        summary: summary
+        messages:
+        - messages
+        - messages
+        state: SUCCESS
+      properties:
+        state:
+          enum:
+          - SUCCESS
+          - WARNING
+          - ERROR
+          type: string
+        summary:
+          type: string
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    AccountDto:
+      example:
+        role: VIEWER
+        displayName: displayName
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        revenueAccount:
+          chargesEnabled: true
+          country: country
+          createdAt: 0
+          payoutsEnabled: true
+          defaultCurrency: defaultCurrency
+          name: name
+          detailsSubmitted: true
+          ownerId: ownerId
+          email: email
+        billingAccount:
+          solvency:
+            summary: summary
+            messages:
+            - messages
+            - messages
+            state: SUCCESS
+          address:
+            country: country
+            city: city
+            street: street
+            postalCode: postalCode
+          taxId:
+            verificationStatus: PENDING
+            type: type
+            value: value
+          name: name
+          ownerId: ownerId
+          charged: true
+          email: email
+        isOrganization: true
+      properties:
+        id:
+          format: uuid
+          type: string
+        displayName:
+          type: string
+        role:
+          enum:
+          - VIEWER
+          - MAINTAINER
+          - OWNER
+          type: string
+        billingAccount:
+          $ref: '#/components/schemas/BillingAccountDto'
+        revenueAccount:
+          $ref: '#/components/schemas/RevenueAccountDto'
+        isOrganization:
+          type: boolean
+      type: object
+    Address:
+      example:
+        country: country
+        city: city
+        street: street
+        postalCode: postalCode
+      properties:
+        street:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+      type: object
+    BillingAccountDto:
+      example:
+        solvency:
+          summary: summary
+          messages:
+          - messages
+          - messages
+          state: SUCCESS
+        address:
+          country: country
+          city: city
+          street: street
+          postalCode: postalCode
+        taxId:
+          verificationStatus: PENDING
+          type: type
+          value: value
+        name: name
+        ownerId: ownerId
+        charged: true
+        email: email
+      properties:
+        ownerId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        taxId:
+          $ref: '#/components/schemas/TaxId'
+        solvency:
+          $ref: '#/components/schemas/ValidationResult'
+        charged:
+          type: boolean
+      required:
+      - ownerId
+      type: object
+    RevenueAccountDto:
+      example:
+        chargesEnabled: true
+        country: country
+        createdAt: 0
+        payoutsEnabled: true
+        defaultCurrency: defaultCurrency
+        name: name
+        detailsSubmitted: true
+        ownerId: ownerId
+        email: email
+      properties:
+        ownerId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        defaultCurrency:
+          type: string
+        country:
+          type: string
+        chargesEnabled:
+          type: boolean
+        detailsSubmitted:
+          type: boolean
+        createdAt:
+          format: int64
+          type: integer
+        payoutsEnabled:
+          type: boolean
+      required:
+      - createdAt
+      type: object
+    TaxId:
+      example:
+        verificationStatus: PENDING
+        type: type
+        value: value
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+        verificationStatus:
+          enum:
+          - PENDING
+          - VERIFIED
+          - UNVERIFIED
+          - UNAVAILABLE
+          type: string
+      type: object
+    updateSourceCode_request:
+      properties:
+        sourceCode:
+          format: binary
+          type: string
+      required:
+      - sourceCode
+      type: object
+    updateApiDefinition_request:
+      properties:
+        file:
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+    createService_request:
+      properties:
+        userCode:
+          format: binary
+          type: string
+        apiDefinition:
+          format: binary
+          type: string
+      type: object
+    createExternalService_request:
+      properties:
+        apiDefinition:
+          format: binary
+          type: string
+      type: object
+    CpuConfiguration_allOf:
+      properties:
+        amount:
+          format: int32
+          type: integer
+        unit:
+          type: string
+      type: object
+    ServiceDefinitionDto_configurations_inner:
+      oneOf:
+      - $ref: '#/components/schemas/CpuConfiguration'
+      - $ref: '#/components/schemas/MemoryConfiguration'
+      - $ref: '#/components/schemas/PlatformManagedConfiguration'
+  securitySchemes:
+    apiKey:
+      in: header
+      name: X-Auth-Token
+      type: apiKey
+    oauth2:
+      flows:
+        password:
+          refreshUrl: https://platform.planqk.de/auth/realms/planqk/protocol/openid-connect/token
+          scopes:
+            profile: ""
+          tokenUrl: https://platform.planqk.de/auth/realms/planqk/protocol/openid-connect/token
+      type: oauth2
+
