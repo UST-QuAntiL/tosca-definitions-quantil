@@ -12,7 +12,7 @@
 
 The DA with the user code needs to be an ArchiveArtifact and the file name needs to be `user_code.zip`.
 You have to attach the DA in the Service Template to the Node Template of the PlanQK-Service.
-Adding it to the Node Type Implementation **does NOT work**.
+Adding it to the Node Type Implementation **does NOT work**, because it would not get sent to the `create` operation.
 
 Node Templates of the Node Type PlanQK-Service need to be `hosted on` a PlanQK-Platform Node Template.
 
