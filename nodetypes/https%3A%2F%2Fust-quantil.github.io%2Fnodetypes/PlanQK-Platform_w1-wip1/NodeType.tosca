@@ -9,6 +9,5 @@
                 <winery:type>xsd:string</winery:type>
             </winery:properties>
         </winery:PropertiesDefinition>
-        <Interfaces/>
     </NodeType>
 </Definitions>
