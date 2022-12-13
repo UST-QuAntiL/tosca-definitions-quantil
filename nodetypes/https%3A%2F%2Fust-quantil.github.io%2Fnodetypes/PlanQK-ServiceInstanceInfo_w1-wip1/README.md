@@ -4,7 +4,7 @@
 
 ## Properties
 
-- `ServiceID`: don't set a values for this property. It will be automatically set when the service is deployed.
+- `ServiceID`: do not set a value for this property. It will be automatically set when the service is deployed.
 
 ## Usage
 
