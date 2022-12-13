@@ -3,6 +3,7 @@
     <NodeType name="PlanQK-Platform_w1-wip1" abstract="no" final="no" targetNamespace="https://ust-quantil.github.io/nodetypes" winery:bordercolor="#f51700">
         <winery:PropertiesDefinition elementname="PlanQK-Platform_w1-wip1" namespace="https://ust-quantil.github.io/nodetypes">
             <winery:properties>
+                <winery:defaultValue>get_input: PlanqkApiKey</winery:defaultValue>
                 <winery:derivedFromStatus>SELF</winery:derivedFromStatus>
                 <winery:derivedFromType xmlns:nodeTypesQuantil="https://ust-quantil.github.io/nodetypes">nodeTypesQuantil:PlanQK-Platform_w1-wip1</winery:derivedFromType>
                 <winery:key>PlanqkApiKey</winery:key>
