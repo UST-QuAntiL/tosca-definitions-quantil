@@ -1,4 +1,4 @@
-package org.opentosca.artifacttemplates.planqkservice.feign;
+package io.github.ust.quantil.artifacttemplates.planqkservice.feign;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

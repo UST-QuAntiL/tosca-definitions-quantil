@@ -1,4 +1,4 @@
-package org.opentosca.artifacttemplates;
+package io.github.ust.quantil.artifacttemplates;
 
 import java.io.StringWriter;
 import java.net.MalformedURLException;

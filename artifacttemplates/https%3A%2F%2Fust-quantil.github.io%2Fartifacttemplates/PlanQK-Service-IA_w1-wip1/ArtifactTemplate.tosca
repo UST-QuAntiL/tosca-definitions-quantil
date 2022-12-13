@@ -3,13 +3,13 @@
     <ArtifactTemplate xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" name="PlanQK-Service-IA_w1-wip1" type="otatyIgeneral:WAR-Java17" id="PlanQK-Service-IA_w1-wip1">
         <Properties>
             <WSProperties xmlns="http://www.uni-stuttgart.de/opentosca">
-                <ServiceEndpoint>/io_github_ust-quantil_artifactTemplates_PlanQK-Service_ContainerInterfacePort</ServiceEndpoint>
-                <PortType>{http://artifacttemplates.opentosca.org}io_github_ust-quantil_artifactTemplates_PlanQK-Service__ContainerInterface</PortType>
+                <ServiceEndpoint>/io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterfacePort</ServiceEndpoint>
+                <PortType>{http://artifacttemplates.opentosca.org}io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterface</PortType>
                 <InvocationType>SOAP/HTTP</InvocationType>
             </WSProperties>
         </Properties>
         <ArtifactReferences>
-            <ArtifactReference reference="artifacttemplates/https%253A%252F%252Fust-quantil.github.io%252Fartifacttemplates/PlanQK-Service-IA_w1-wip1/files/io_github_ust-quantil_artifactTemplates_PlanQK-Service__ContainerInterface.war"/>
+            <ArtifactReference reference="artifacttemplates/https%253A%252F%252Fust-quantil.github.io%252Fartifacttemplates/PlanQK-Service-IA_w1-wip1/files/io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterface.war"/>
         </ArtifactReferences>
     </ArtifactTemplate>
 </Definitions>

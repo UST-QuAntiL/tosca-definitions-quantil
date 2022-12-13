@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>PlanQK-Service__ContainerInterface</artifactId>
-        <groupId>org.opentosca.artifacttemplates</groupId>
+        <groupId>io.github.ust.quantil.artifacttemplates</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -99,7 +99,7 @@
             <version>2.9.1</version>
         </dependency>
         <dependency>
-            <groupId>org.opentosca.artifacttemplates</groupId>
+            <groupId>io.github.ust.quantil.artifacttemplates</groupId>
             <artifactId>api-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
@@ -108,7 +108,7 @@
     </dependencies>
 
     <build>
-        <finalName>io_github_ust-quantil_artifactTemplates_PlanQK-Service__ContainerInterface</finalName>
+        <finalName>io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterface</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -135,7 +135,7 @@
                             <xsdOptions>
                                 <xsdOption>
                                     <xsd>src/main/resources/containerManagementInterface.xsd</xsd>
-                                    <packagename>org.opentosca.artifacttemplates.planqkservice</packagename>
+                                    <packagename>io.github.ust.quantil.artifacttemplates.planqkservice</packagename>
                                 </xsdOption>
                             </xsdOptions>
                         </configuration>

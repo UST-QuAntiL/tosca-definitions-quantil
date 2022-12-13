@@ -1,13 +1,13 @@
-package org.opentosca.artifacttemplates.planqkservice;
+package io.github.ust.quantil.artifacttemplates.planqkservice;
 
 import java.io.File;
 import java.util.UUID;
 
 import de.stoneone.planqk.api.ServicePlatformServicesApi;
 import de.stoneone.planqk.api.model.ServiceDto;
-import org.opentosca.artifacttemplates.OpenToscaHeaders;
-import org.opentosca.artifacttemplates.SoapUtil;
-import org.opentosca.artifacttemplates.planqkservice.feign.CustomDecoder;
+import io.github.ust.quantil.artifacttemplates.OpenToscaHeaders;
+import io.github.ust.quantil.artifacttemplates.SoapUtil;
+import io.github.ust.quantil.artifacttemplates.planqkservice.feign.CustomDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.context.MessageContext;
@@ -15,7 +15,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 
-import static org.opentosca.artifacttemplates.planqkservice.FileHandler.downloadFile;
+import static io.github.ust.quantil.artifacttemplates.planqkservice.FileHandler.downloadFile;
 
 import de.stoneone.planqk.api.invoker.ApiClient;
 

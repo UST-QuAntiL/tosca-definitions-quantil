@@ -1,4 +1,4 @@
-package org.opentosca.artifacttemplates.planqkservice;
+package io.github.ust.quantil.artifacttemplates.planqkservice;
 
 import java.io.File;
 import java.io.FileOutputStream;

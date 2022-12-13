@@ -1,12 +1,12 @@
-package org.opentosca.artifacttemplates.planqkservice;
+package io.github.ust.quantil.artifacttemplates.planqkservice;
 
 import java.io.IOException;
 
+import io.github.ust.quantil.artifacttemplates.OpenToscaIASpringApplication;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.jupiter.api.Test;
-import org.opentosca.artifacttemplates.OpenToscaIASpringApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 

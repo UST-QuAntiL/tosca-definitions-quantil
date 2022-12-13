@@ -1,9 +1,8 @@
-# Generated Implementation Artifact Skeleton for org_opentosca_nodetypes_DockerContainer__ContainerManagementInterface
+# Generated Implementation Artifact Skeleton for io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterface
 
-* Interface Name: org_opentosca_nodetypes_DockerContainer__ContainerManagementInterface
-* Namespace: http://nodetypes.opentosca.org/
-* Java Package: org.opentosca.nodetypes
-* URL: http://localhost:8080/winery/artifacttemplates/http%253A%252F%252Fopentosca.org%252Fnodetypes/DockerContainer_ContainerManagementInterface-AT/files/../
+* Interface Name: io_github_ust_quantil_artifacttemplates_PlanQKService__ContainerManagementInterface
+* Namespace: https://ust-quantil.github.io/artifacttemplates
+* Java Package: io.github.ust.quantil.artifacttemplates
 
 ## Preconditions
 To develop and build this Implementation Artifact you need Maven and Eclipse.

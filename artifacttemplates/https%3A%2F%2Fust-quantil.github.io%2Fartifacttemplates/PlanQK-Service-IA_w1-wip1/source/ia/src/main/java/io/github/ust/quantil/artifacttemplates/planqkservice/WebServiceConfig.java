@@ -1,4 +1,4 @@
-package org.opentosca.artifacttemplates.planqkservice;
+package io.github.ust.quantil.artifacttemplates.planqkservice;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
