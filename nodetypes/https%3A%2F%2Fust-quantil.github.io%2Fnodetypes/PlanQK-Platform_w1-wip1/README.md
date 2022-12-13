@@ -4,7 +4,7 @@
 
 ## Properties
 
-- `PlanQKApiKey`: personal access token for the PlanQK platform. Should be set to `get_input: PlanqkApiKey`.
+- `PlanQKApiKey`: personal access token for the PlanQK platform.
 
 ## Usage
 
