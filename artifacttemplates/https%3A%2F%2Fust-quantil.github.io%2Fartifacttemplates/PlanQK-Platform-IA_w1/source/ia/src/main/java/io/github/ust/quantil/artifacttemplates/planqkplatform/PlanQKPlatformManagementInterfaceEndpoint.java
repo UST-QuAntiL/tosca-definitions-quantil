@@ -106,6 +106,17 @@ public class PlanQKPlatformManagementInterfaceEndpoint {
             return;
         }
 
+        String organizationID = null;
+
+        if (request.getOrganizationID() != null) {
+            if (!request.getOrganizationID().equals("")) {
+                organizationID = request.getOrganizationID();
+                LOG.info("Organization ID received. The service will be deployed in the context of this organization.");
+            } else {
+                LOG.info("No organization ID received. The service will be deployed in the context of the user.");
+            }
+        }
+
         ApiClient apiClient = new ApiClient("apiKey", apiKey);
         apiClient.setFeignBuilder(apiClient.getFeignBuilder().decoder(new CustomDecoder(apiClient.getObjectMapper())));
 
@@ -125,7 +136,7 @@ public class PlanQKPlatformManagementInterfaceEndpoint {
                 null,
                 null,
                 null,
-                null,
+                organizationID,
                 userCode,
                 apiDefinition);
 

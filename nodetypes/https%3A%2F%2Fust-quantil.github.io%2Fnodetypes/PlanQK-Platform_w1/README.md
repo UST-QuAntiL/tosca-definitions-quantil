@@ -5,6 +5,7 @@
 ## Properties
 
 - `PlanQKApiKey`: personal access token for the PlanQK platform.
+- `OrganizationID`: if you want to deploy services in the context of an organization, set this property to the oragnization ID, otherwise leave it blank.
 
 ## Usage
 

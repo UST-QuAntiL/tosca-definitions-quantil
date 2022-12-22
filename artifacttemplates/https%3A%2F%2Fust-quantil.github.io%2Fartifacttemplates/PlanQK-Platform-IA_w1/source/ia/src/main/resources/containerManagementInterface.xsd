@@ -4,6 +4,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element form="qualified" minOccurs="0" name="PlanqkApiKey" type="xs:string"/>
+                <xs:element form="qualified" minOccurs="0" name="OrganizationID" type="xs:string"/>
                 <xs:element form="qualified" minOccurs="0" name="ServiceName" type="xs:string"/>
                 <xs:element form="qualified" minOccurs="0" name="ServiceDescription" type="xs:string"/>
                 <xs:element form="qualified" minOccurs="0" name="QuantumBackend" type="xs:string"/>
@@ -26,6 +27,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element form="qualified" minOccurs="0" name="PlanqkApiKey" type="xs:string"/>
+                <xs:element form="qualified" minOccurs="0" name="OrganizationID" type="xs:string"/>
                 <xs:element form="qualified" minOccurs="0" name="ServiceID" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>

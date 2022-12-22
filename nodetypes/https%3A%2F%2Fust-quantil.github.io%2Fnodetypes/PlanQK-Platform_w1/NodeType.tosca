@@ -9,12 +9,18 @@
                 <winery:key>PlanqkApiKey</winery:key>
                 <winery:type>xsd:string</winery:type>
             </winery:properties>
+            <winery:properties>
+                <winery:defaultValue></winery:defaultValue>
+                <winery:key>OrganizationID</winery:key>
+                <winery:type>xsd:string</winery:type>
+            </winery:properties>
         </winery:PropertiesDefinition>
         <Interfaces>
             <Interface name="http://opentosca.org/interfaces/pattern/container">
                 <Operation name="create">
                     <InputParameters>
                         <InputParameter name="PlanqkApiKey" type="xsd:string" required="yes"/>
+                        <InputParameter name="OrganizationID" type="xsd:string" required="yes"/>
                         <InputParameter name="ServiceName" type="xsd:string" required="yes"/>
                         <InputParameter name="ServiceDescription" type="xsd:string" required="yes"/>
                         <InputParameter name="QuantumBackend" type="xsd:string" required="yes"/>
@@ -27,6 +33,7 @@
                 <Operation name="terminate">
                     <InputParameters>
                         <InputParameter name="PlanqkApiKey" type="xsd:string" required="yes"/>
+                        <InputParameter name="OrganizationID" type="xsd:string" required="yes"/>
                         <InputParameter name="ServiceID" type="xsd:string" required="yes"/>
                     </InputParameters>
                     <OutputParameters>
