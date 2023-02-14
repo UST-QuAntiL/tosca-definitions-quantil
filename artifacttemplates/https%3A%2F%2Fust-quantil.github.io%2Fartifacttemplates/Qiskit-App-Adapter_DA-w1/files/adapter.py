@@ -22,17 +22,20 @@ job_callback = None
 
 def main():
     print('Starting Qiskit-App HTTP-Endpoint')
-    
+
     backend = get_backend()
 
     def qiskit_job(job, args):
         print('Invoking Qiskit App Algo')
         try:
-            quantum_instance = QuantumInstance(backend, get_shots_param(args)) #Additional parameters could be added
+            quantum_instance = QuantumInstance(backend=backend, shots=get_shots_param(args)) #Additional parameters could be added
+            print("Args %s" % args)
+            print("Quantum instance %s" % quantum_instance)
+            print("Shots %s " % get_shots_param(args))
             result = run_algo(quantum_instance, args)
             print('result:', result)
             job.success(result)
-        except Exception as e: 
+        except Exception as e:
             print("Unexpected error invoking the Qiskit App Algo:", e)
             job.failed()
 
@@ -44,7 +47,7 @@ def get_shots_param(args):
         return int(args["shots"])
     else:
         return 1
-    
+
 
 # Create Qiskit-App HTTP Endpoint
 
@@ -61,14 +64,14 @@ class Job():
     def success(self, result):
         self.status = Status.FINISHED
         self.result = {'status': 'success', 'output': result}
-    
+
     def failed(self):
         self.status = Status.FINISHED
         self.result = {'status': 'failed'}
-    
+
     def to_dict(self):
         return {'id':self.id, 'status':self.status, 'result':self.result}
-    
+
 @app.after_request #CORS
 def after_request(response):
     header = response.headers
