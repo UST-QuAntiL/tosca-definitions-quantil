@@ -1,4 +1,4 @@
-# PlanQK Service [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+# Qiskit Runtime Program [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
 > This node is used to upload programs to Qiskit Runtime.
 
