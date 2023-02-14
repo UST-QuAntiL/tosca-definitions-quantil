@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="https://ust-quantil.github.io/artifacttemplates">
+
+    <xs:element name="createRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element form="qualified" minOccurs="0" name="IBMQ_TOKEN" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="invokeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MessageID" type="xs:string"/>
+                <xs:element minOccurs="0" name="Error" type="xs:string"/>
+                <xs:element minOccurs="0" name="Result" type="xs:string"/>
+                <xs:element minOccurs="0" name="RuntimeProgramID" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="terminateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element form="qualified" minOccurs="0" name="IBMQ_TOKEN" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
