@@ -1,15 +1,12 @@
-# PlanQK Platform [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+# Qiskit Runtime [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
-> This node type provides the API key to access the PlanQK Platform
-
-## Properties
-
-- `PlanQKApiKey`: personal access token for the PlanQK platform.
-- `OrganizationID`: if you want to deploy services in the context of an organization, set this property to the oragnization ID, otherwise leave it blank.
+This node type uploads programs to Qiskit Runtime.
 
 ## Usage
 
-See the README of the QiskitRuntime-Program Node Type.
+Requires IBMQ Nodetype with valid access token.
+
+See also: README of the QiskitRuntime-Program Node Type.
 
 ## Haftungsausschluss
 

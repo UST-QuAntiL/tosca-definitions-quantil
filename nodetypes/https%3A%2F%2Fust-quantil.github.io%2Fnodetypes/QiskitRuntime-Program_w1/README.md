@@ -1,22 +1,17 @@
 # PlanQK Service [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
-> This node type deploys a DA as a service on the PlanQK platform.
-
-## Properties
-
-- `ServiceName`: the name the service should have on the PlanQK platform. Must be unique among your services.
-- `ServiceDescription`: the description that will be displayed on the PlanQK platform for your service.
-- `QuantumBackend`: The quantum backend that should be used. Possible values: `NONE`, `IBM`, `DWAVE`.
+> This node is used to upload programs to Qiskit Runtime.
 
 ## Usage
 
-The DA with the user code needs to be an ArchiveArtifact and the file name needs to be `user_code.zip`.
+The DA with the user code needs to a PythonScriptArtifact. It must contains two files:
+- `runtime_program.py`: Contains the source code of the Qiskit Runtime program.(see [Qiskit Runtime Tutorial: Construct a Runtime program](https://quantum-computing.ibm.com/lab/docs/iql/runtime/uploading_program#construct-a-runtime-program))
+- `meta.json`: Contains the metadata required for upload. (see [Qiskit Runtime Tutorial: Define program metadata](https://quantum-computing.ibm.com/lab/docs/iql/runtime/uploading_program#define-program-metadata))
+
 You have to attach the DA in the Service Template to the Node Template of the QiskitRuntime-Program.
 Adding it to the Node Type Implementation **does NOT work**, because it would not get sent to the `create` operation.
 
 Node Templates of the Node Type QiskitRuntime-Program need to be `hosted on` a QiskitRuntime Node Template.
-
-A Node Template of the Node Type QiskitRuntime-ProgramInstanceInfo needs to be `hosted on` a QiskitRuntime-Program Node Template, otherwise the DA of the QiskitRuntime-Program cannot be deployed.
 
 
 ## Haftungsausschluss
