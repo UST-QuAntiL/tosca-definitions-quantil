@@ -2,8 +2,12 @@
 
 > This node type installs Braket SDK.
 
-> **⚠ Executions may not be reproducible!** This Node Type installs Braket SDK in its latest version.
-> Thus, applications that depend on this Node Type may not be compatible with the installed version.
+> This Node Type installs Braket SDK in the specified version.
+> If no version is specified, the latest version of Braket SDK is installed by default.
+
+## Properties
+
+- `Version`
 
 ## Haftungsausschluss
 
