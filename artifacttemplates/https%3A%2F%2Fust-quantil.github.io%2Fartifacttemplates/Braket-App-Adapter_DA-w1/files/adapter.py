@@ -29,7 +29,7 @@ def main():
             print('result:', result)
             job.success(result)
         except Exception as e: 
-            print("Unexpected error invoking the Qiskit App Algo:", e)
+            print("Unexpected error invoking the Braket App Algo:", e)
             job.failed()
 
     start_endpoint(braket_job)
@@ -42,7 +42,7 @@ def get_shots_param(args):
         return 1
     
 
-# Create Qiskit-App HTTP Endpoint
+# Create Braket-App HTTP Endpoint
 
 class Status():
     FINISHED = 'finished'

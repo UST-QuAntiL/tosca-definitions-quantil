@@ -1,6 +1,6 @@
 # BraketApp Artifact Type [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
-> This artifact type is used to identify Qiskit applications.
+> This artifact type is used to identify Braket applications.
 
 ## Haftungsausschluss
 
