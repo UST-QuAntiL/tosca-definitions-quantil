@@ -41,7 +41,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>https://platform.planqk.de/qc-catalog/v3/api-docs</inputSpec>
+                            <inputSpec>https://platform.planqk.de/qc-catalog/docs</inputSpec>
                             <apiPackage>de.stoneone.planqk.api</apiPackage>
                             <modelPackage>de.stoneone.planqk.api.model</modelPackage>
                             <invokerPackage>de.stoneone.planqk.api.invoker</invokerPackage>

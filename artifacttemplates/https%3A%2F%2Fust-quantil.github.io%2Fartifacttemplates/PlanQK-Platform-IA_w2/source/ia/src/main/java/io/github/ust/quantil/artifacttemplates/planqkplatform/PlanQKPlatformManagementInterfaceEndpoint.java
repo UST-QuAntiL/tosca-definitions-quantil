@@ -127,18 +127,20 @@ public class PlanQKPlatformManagementInterfaceEndpoint {
         String description = request.getServiceDescription();
         String quantumBackend = request.getQuantumBackend();
 
-        ServiceDto service = servicesApi.createService(
+        ServiceDto service = servicesApi.createManagedService(
                 serviceName,
-                type,
-                quantumBackend,
                 description,
+                quantumBackend,
+                null,
+                null,
                 null,
                 null,
                 null,
                 null,
                 organizationID,
                 userCode,
-                apiDefinition);
+                apiDefinition
+        );
 
         InvokeResponse invokeResponse = new InvokeResponse();
         invokeResponse.setMessageID(openToscaHeaders.messageId());
